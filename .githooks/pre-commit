@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -e
+LOCKED_FILES=(
+  "app/login/page.tsx"
+  "app/layout.tsx"
+  "app/globals.css"
+  "tailwind.config.js"
+  "postcss.config.js"
+)
+CHANGED=$(git diff --cached --name-only)
+for f in "${LOCKED_FILES[@]}"; do
+  if echo "$CHANGED" | grep -qx "$f"; then
+    echo "❌ Arquivo travado alterado: $f"
+    echo "Se realmente precisa alterar, remova a trava localmente:"
+    echo "  chmod u+w $f   # edita"
+    echo "  (e, se necessário) remova a regra de bloqueio deste hook"
+    exit 1
+  fi
+done
+exit 0
