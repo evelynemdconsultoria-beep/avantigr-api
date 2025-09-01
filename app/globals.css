@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fonte clean estilo Apple (fallbacks) */
+:root {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "SF Pro Text",
+    "Helvetica Neue", Helvetica, Arial, "Noto Sans", "Segoe UI", sans-serif;
+}
+html, body { height: 100%; font-family: var(--font-sans); }
+
+/* Fundo clean */
+.bg-soft-gradient{
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(0,0,0,.04), transparent 60%),
+    radial-gradient(1000px 500px at 80% 90%, rgba(0,0,0,.05), transparent 60%),
+    linear-gradient(180deg, #F6F7F8 0%, #ECEEF1 100%);
+}
+
+/* --- IMPORTANTE: deixar o input com o MESMO fundo mesmo ao digitar/autofill --- */
+input, input:focus, input:hover {
+  background: rgba(255,255,255,0.06) !important;
+  color: #fff;
+}
+
+/* Remove o amarelo/azul do autofill WebKit e mantém o fundo igual */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 9999s ease-out 0s;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.06) inset;
+          box-shadow: 0 0 0px 1000px rgba(255,255,255,0.06) inset;
+  border-radius: 0.75rem; /* combina com rounded-xl */
+}
